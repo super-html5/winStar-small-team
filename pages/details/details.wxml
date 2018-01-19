@@ -1,2 +1,37 @@
 <!--pages/details/details.wxml-->
-<text>pages/details/details.wxml</text>
+<view class='bigBox'>
+  <view wx:if="{{isPrompt}}" class='prompt'>
+    <image src='../../img/prompt.png'></image>
+    <text>缴费成功后，因数据会延迟该笔违法可能会存在，请勿在24小时内重复操作</text>
+    <image bindtap='close' src='../../img/del.png'></image>
+  </view>
+
+  <view class='content'>
+    <view class='plate'>
+      <text>{{Identification}}</text>
+    </view>
+    <block wx:if="{{illegalList.length>0}}" wx:for="{{illegalList}}" wx:for-item="illegal" wx:key="*this">
+      <view class='illegal' data-index="{{index}}" bindtap='selsct'>
+        <text>{{illegal.place}}</text>
+        <text>{{illegal.action}}</text>
+        <image wx:if="{{!illegal.isSelect}}" src='../../img/unselect.png'></image>
+        <image wx:if="{{illegal.isSelect}}" src='../../img/select.png'></image>
+        <view class='punishment'>
+          <text>扣分  {{illegal.dockPoints}}</text>
+          <text>罚款  {{illegal.penaltyAmount}}</text>
+        </view>
+      </view>
+    </block>
+    <block wx:if="{{!illegalList}}">
+      <view class='noIllegal'>
+        没有待处理的违法
+      </view>
+    </block>
+  </view>
+  <view class="bottom_way">
+    <view class="total">合计：
+      <text style='margin-right: 30rpx;'>￥{{money}}</text>
+    </view>
+    <button  disabled="{{illegalList.length>0}}" class="payment" bindtap='payment'>立即缴费</button>
+  </view>
+</view>
