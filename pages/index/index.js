@@ -15,7 +15,6 @@ Page({
   backFu: function (res) {
     app.globalData.token = res.data.token;
     app.globalData.accountId = res.data.accountId;
-    this.pay();
   },
 
   searchBox: function (e) {
