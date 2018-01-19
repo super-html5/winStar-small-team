@@ -98,13 +98,17 @@ Page({
       success: function (res) {
         console.log(res);
         if (res.statusCode == 200) {
+          wx.hideLoading();
           wx.setStorageSync('illegalList', res.data);
-
           wx.navigateTo({
-            url: '',
+            url: `/pages/details/details?isFlag=1&plateNumber=${plateNumber}&engineNumber=${engineNumber}`,
           })
         } else if (res.data.code == 'illegal.NotFound') {
+          wx.hideLoading();
           wx.setStorageSync('illegalList', null);
+          wx.navigateTo({
+            url: `/pages/details/details?isFlag=1&plateNumber=${plateNumber}&engineNumber=${engineNumber}`,
+          })
         } else {
           wx.showToast({
             icon: 'loading',
@@ -138,9 +142,17 @@ Page({
       success: function (res) {
         console.log(res)
         if (res.statusCode == 200) {
+          wx.hideLoading();
           wx.setStorageSync('illegalList', res.data);
+          wx.navigateTo({
+            url: `/pages/details/details?isFlag=2&certificateNumber=${certificateNumber}&certificateType=A`,
+          })
         } else if (res.data.code == 'illegal.NotFound') {
+          wx.hideLoading();
           wx.setStorageSync('illegalList', null);
+          wx.navigateTo({
+            url: `/pages/details/details?isFlag=2&certificateNumber=${certificateNumber}&certificateType=A`,
+          })
         } else if (res.data.code == 'certificateNumberOrType.InvalidParameter') {
           wx.showToast({
             icon: 'loading',
@@ -180,9 +192,17 @@ Page({
       success: function (res) {
         console.log(res);
         if (res.statusCode == 200) {
+          wx.hideLoading();
           wx.setStorageSync('illegalList', res.data);
+          wx.navigateTo({
+            url: `/pages/details/details?isFlag=2&awardNumber=${awardNumber}`,
+          })
         } else if (res.data.code == 'illegal.NotFound') {
+          wx.hideLoading();
           wx.setStorageSync('illegalList', null);
+          wx.navigateTo({
+            url: `/pages/details/details?isFlag=2&awardNumber=${awardNumber}`,
+          })
         } else {
           wx.showToast({
             icon: 'loading',
