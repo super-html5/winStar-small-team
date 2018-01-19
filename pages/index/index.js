@@ -38,9 +38,9 @@ Page({
           return;
         }
         that.getCarNumberDetails(msg)
-      } else if (msg.length > 7 && msg.length <= 18) {
+      } else if (msg.length > 15 && msg.length <= 18) {
         that.searchTwo(msg)
-      } else {
+      } else if (msg.length == 15) {
         that.searchThree(msg)
       }
     }
