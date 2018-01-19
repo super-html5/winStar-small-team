@@ -1,14 +1,20 @@
 // pages/details/details.js
+const pay = require('../../config.js').pay
+const addOrders = require('../../config.js').addOrders
+const dictionaries = require('dictionaries');
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    isPrompt: true,
+    isPrompt: false,
     illegalList: [{}],
-    Identification:'',
-    money:0
+    Identification: '',
+    money: 0,
+    id: ''
   },
   /**
    * 关闭提示
@@ -36,31 +42,157 @@ Page({
     });
   },
   /**
+   * 下单
+   */
+  addOrders: function () {
+    wx.showLoading();
+    let illegalList = this.data.illegalList;
+    let i;
+    illegalList.forEach(function (val, index) {
+      if (val.isSelect) {
+        i = index;
+      };
+    })
+    wx.request({
+      url: addOrders,
+      method: 'POST',
+      header: {
+        "token_id": app.globalData.token,
+      },
+      data: JSON.stringify({
+        'certificateNumber': illegalList[i].certificateNumber,
+        'certificateType': '02',
+        'goodsId': illegalList[i].id
+      }),
+      success: function (res) {
+        console.log(res);
+        if (res.statusCode == 200) {
+          let _info = JSON.parse(res.data.result);
+          console.log(_info.message)
+          this.payment(_info.message);
+        } else if (res.statusCode == 503) {
+          wx.showToast({
+            icon: 'loading',
+            title: '缴费业务维护中，给您带来不便请谅解',
+            duration: 2000
+          })
+        } else if (res.statusCode == 400 || res.statusCode == 404) {
+          let code = dictionaries.add_order_errorMessage[res.data.code]
+          wx.showToast({
+            icon: 'loading',
+            title: code,
+            duration: 2000
+          })
+        } else {
+          wx.showToast({
+            icon: 'loading',
+            title: 系统当前繁忙,
+            duration: 2000
+          })
+        }
+      },
+      fail: function (error) {
+        console.log(error);
+        wx.showToast({
+          icon: 'loading',
+          title: 系统当前繁忙,
+          duration: 2000
+        })
+      },
+      complete: function () {
+        wx.hideLoading();
+      }
+    })
+  },
+  /**
    * 立即支付
    */
-  payment:function(){
-    
+  payment: function (orderNumber) {
+    let that = this;
+    wx.showLoading();
+    wx.request({
+      url: pay,
+      method: 'POST',
+      data: {
+        'orderNumber': orderNumber,
+        'subBankCode': '203'
+      },
+      header: {
+        'content-type': 'application/json',
+        "token_id": app.globalData.token,
+        'accountId': app.globalData.accountId,
+      },
+      success: function (res) {
+        let _info = JSON.parse(res.data.result);
+        console.log(_info)
+        if (res.statusCode == 200) {
+          wx.requestPayment({
+            'timeStamp': _info.timeStamp,
+            'nonceStr': _info.nonceStr,
+            'package': _info.package,
+            'signType': 'MD5',
+            'paySign': _info.paySign,
+            'success': function (res) {
+              console.log(res);
+              let illegalList = that.data.illegalList;
+              let id = that.data.id;
+              illegalList.forEach(function (val, index) {
+                illegalList[i].isPay = false;
+                if (val.id === id) {
+                  illegalList[index].isPay = true;
+                };
+              })
+              that.setData({
+                illegalList: illegalList
+              });
+            },
+            'fail': function (res) {
+
+            }
+          })
+        } else {
+          wx.showToast({
+            icon: 'loading',
+            title: '系统当前繁忙',
+            duration: 2000
+          })
+        }
+
+      },
+      fail: function (error) {
+        wx.showToast({
+          icon: 'loading',
+          title: 系统当前繁忙,
+          duration: 2000
+        })
+      },
+      complete: function () {
+        wx.hideLoading();
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     let that = this;
-    let illegalList=wx.getStorageSync('illegalList');
-    console.log(illegalList);
+    let illegalList = wx.getStorageSync('illegalList');
+    console.log(options);
     that.setData({
       illegalList: illegalList
     });
-    if (options.isFlag==1){
+    if (options.isFlag == 1) {
       that.setData({
-        Identification: options.plateNumber
+        Identification: '车牌号: ' + options.plateNumber
       });
-    } else if (options.isFlag == 2){
+    } else if (options.isFlag == 2) {
       that.setData({
-        Identification: options.plateNumber
+        Identification: '证件号码: ' + options.certificateNumber
       });
-    } else if (options.isFlag == 3){
-
+    } else if (options.isFlag == 3) {
+      that.setData({
+        Identification: '裁决书编号: ' + options.awardNumber
+      });
     }
   },
 

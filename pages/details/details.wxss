@@ -62,12 +62,24 @@ page {
 .illegal>text:nth-of-type(1) {
   font-size: 36rpx;
   margin-bottom: 20rpx;
+  width: 480rpx;
 }
 
 .illegal>text:nth-of-type(2) {
   font-size: 30rpx;
   color: #999;
+  margin-bottom: 20rpx;
+}
+
+.illegal>text:nth-of-type(3) {
+  font-size: 30rpx;
+  color: #f00;
+  margin-bottom: 20rpx;
+}
+
+.illegal>text:last-of-type {
   padding-bottom: 44rpx;
+  margin-bottom: 0;
   border-bottom: 1rpx solid #d8d8d8;
 }
 
@@ -127,7 +139,8 @@ page {
   border: none;
   border-radius: 0;
 }
-button::after{
+
+button::after {
   border-radius: 0;
   border: none;
 }
