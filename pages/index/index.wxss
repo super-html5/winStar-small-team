@@ -1,0 +1,52 @@
+.img {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -200;
+}
+
+.title {
+  font-size: 50rpx;
+  color: white;
+  text-align: center;
+  margin-top: 200rpx;
+  margin-bottom: 100rpx;
+}
+
+form {
+  
+}
+
+input {
+  width: 80%;
+  height: 100rpx;
+  background-color: white;
+  border-radius: 10rpx;
+  border: 1rpx solid #000;
+  padding-left: 10%;
+  margin: auto;
+}
+
+.text__placeholder {
+  font-size: 30rpx;
+  color: #777;
+}
+
+.text__fl {
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  margin-top: 10rpx;
+}
+
+button {
+  width: 90%;
+  margin-left: 5%;
+  background-color: rgb(250, 232, 10);
+  margin-top: 70rpx;
+  color: rgb(45, 91, 217);
+}

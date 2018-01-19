@@ -11,10 +11,12 @@ App({
     }
     wx.login({
       success: res => {
+        console.log(res);
         wx.request({
           url: getTokenInfo + res.code + '/0/getTokenInfo',
           method: 'GET',
           success: function (_res) {
+            console.log(_res)
             if (typeof backFn == 'function') {
               backFn(_res);
             }
