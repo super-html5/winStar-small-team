@@ -9,7 +9,8 @@ var config = {
 `,//根据裁决书编号查询违法
   getPlateNumberListByCertificate: `${host}/api/v1/illegals/certificateSearch
 `,//根据裁决书编号查询违法
-
   addOrders: `${host}/api/v2/orders`, //下单
+
+  pay: `${host}/api/v1/cashier/payOrder`,//支付
 };
 module.exports = config 

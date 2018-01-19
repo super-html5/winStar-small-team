@@ -29,6 +29,7 @@ App({
     })
   },
   globalData: {
-    token: null
+    token: null,
+    accountId: null
   }
 })

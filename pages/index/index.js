@@ -13,6 +13,8 @@ Page({
   },
   backFu: function (res) {
     app.globalData.token = res.data.token;
+    app.globalData.accountId = res.data.accountId;
+    this.pay();
   },
 
   searchBox: function (e) {
@@ -220,4 +222,42 @@ Page({
       }
     })
   },
+  pay: function () {
+    wx.request({
+      url: 'http://192.168.118.28:8090/api/v1/cashier/payOrder',
+      method: 'POST',
+      data: {
+        'orderNumber': '20171218150234659463945',
+        'subBankCode': '203'
+      },
+      header: {
+        'content-type': 'application/json',
+        "token_id": 'ouzUZ0bMx9_ZRaPbQryjZS2QtQjAOO',
+        'accountId': 'ouzUZ0bMx9_ZRaPbQryjZS2QtQjA',
+      },
+      success: function (res) {
+        let _info = JSON.parse(res.data.result);
+        console.log(_info)
+        wx.requestPayment({
+          'timeStamp': _info.timeStamp,
+          'nonceStr': _info.nonceStr,
+          'package': _info.package,
+          'signType': 'MD5',
+          'paySign': _info.paySign,
+          'success': function (res) {
+              console.log(res);
+          },
+          'fail': function (res) {
+
+          }
+        })
+      },
+      fail: function (error) {
+
+      },
+      complete: function () {
+        wx.hideLoading();
+      }
+    })
+  }
 })
