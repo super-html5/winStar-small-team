@@ -100,14 +100,20 @@ Page({
       success: function (res) {
         console.log(res);
         if (res.statusCode == 200) {
+          let _r = [];
+          for (let i = 0; i < res.data.length; i++) {
+            if (res.data[i].status == 1) {
+              _r.push(res.data[i])
+            }
+          }
           wx.hideLoading();
-          wx.setStorageSync('illegalList', res.data);
+          wx.setStorageSync('illegalList', _r);
           wx.navigateTo({
             url: `/pages/details/details?isFlag=1&plateNumber=${plateNumber}&engineNumber=${engineNumber}`,
           })
         } else if (res.data.code == 'illegal.NotFound') {
           wx.hideLoading();
-          wx.setStorageSync('illegalList', null);
+          wx.setStorageSync('illegalList', []);
           wx.navigateTo({
             url: `/pages/details/details?isFlag=1&plateNumber=${plateNumber}&engineNumber=${engineNumber}`,
           })
@@ -151,7 +157,7 @@ Page({
           })
         } else if (res.data.code == 'illegal.NotFound') {
           wx.hideLoading();
-          wx.setStorageSync('illegalList', null);
+          wx.setStorageSync('illegalList', []);
           wx.navigateTo({
             url: `/pages/details/details?isFlag=2&certificateNumber=${certificateNumber}&certificateType=A`,
           })
@@ -201,7 +207,7 @@ Page({
           })
         } else if (res.data.code == 'illegal.NotFound') {
           wx.hideLoading();
-          wx.setStorageSync('illegalList', null);
+          wx.setStorageSync('illegalList', []);
           wx.navigateTo({
             url: `/pages/details/details?isFlag=3&awardNumber=${awardNumber}`,
           })
