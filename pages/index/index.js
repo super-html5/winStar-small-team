@@ -13,8 +13,6 @@ Page({
   },
   backFu: function (res) {
     app.globalData.token = res.data.token;
-    //this.searchThree("610103198909172037")
-    //this.getCarNumberDetails("陕A3UW53")
   },
 
   searchBox: function (e) {
@@ -77,7 +75,11 @@ Page({
         }
       },
       fail: function (res) {
-
+        wx.showToast({
+          icon: 'loading',
+          title: '系统当前繁忙',
+          duration: 2000
+        })
       }
     })
   },
@@ -97,6 +99,10 @@ Page({
         console.log(res);
         if (res.statusCode == 200) {
           wx.setStorageSync('illegalList', res.data);
+
+          wx.navigateTo({
+            url: '',
+          })
         } else if (res.data.code == 'illegal.NotFound') {
           wx.setStorageSync('illegalList', null);
         } else {
