@@ -197,13 +197,13 @@ Page({
           wx.hideLoading();
           wx.setStorageSync('illegalList', res.data);
           wx.navigateTo({
-            url: `/pages/details/details?isFlag=2&awardNumber=${awardNumber}`,
+            url: `/pages/details/details?isFlag=3&awardNumber=${awardNumber}`,
           })
         } else if (res.data.code == 'illegal.NotFound') {
           wx.hideLoading();
           wx.setStorageSync('illegalList', null);
           wx.navigateTo({
-            url: `/pages/details/details?isFlag=2&awardNumber=${awardNumber}`,
+            url: `/pages/details/details?isFlag=3&awardNumber=${awardNumber}`,
           })
         } else {
           wx.showToast({
