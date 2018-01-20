@@ -107,7 +107,7 @@ Page({
             }
           }
           let _t = new Date().getTime();
-
+          
           for (let i = 0; i < _r.length; i++) {
             if (_t - _r[i].awardAt >= 1296000000) {
               _r[i].isLeeFee = 2
