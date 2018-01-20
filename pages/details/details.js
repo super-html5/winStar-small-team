@@ -88,7 +88,7 @@ Page({
             let code = dictionaries.add_order_errorMessage[res.data.code];
             if (!code) {
               wx.showModal({
-                content: '该笔违法超出自助处理范围，请交管部门处理',
+                content: '该笔违法超出自助处理范围，请到交管部门处理',
                 showCancel: false,
                 success: function (res) {
                 }
