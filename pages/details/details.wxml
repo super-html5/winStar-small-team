@@ -32,7 +32,7 @@
   </view>
   <view wx:if="{{illegalList.length>0}}" class="bottom_way">
     <view class="total">合计：
-      <text style='margin-right: 30rpx;'>￥{{money}}</text>
+      <text style='margin-right: 50rpx;'>￥{{money}}</text>
     </view>
     <view class="payment" bindtap='addOrders'>立即缴费</view>
   </view>
