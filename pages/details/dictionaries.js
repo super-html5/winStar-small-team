@@ -104,6 +104,8 @@ add_order_errorMessage["user.order.ServiceUnavailable"] = "本次缴费失败，
 add_order_errorMessage["moneyEqualZero.order.NotRule"] = "单个违法罚款金额为0元，请到交管部门处理";
 add_order_errorMessage["errorTime.order.NotRule"] = "系统维护时间为（23:30--0:30）,请在其他时间处理违法，给您带来不便，请谅解";
 add_order_errorMessage["payTypeNotCorrect.order.NotRule"] = "付款类型参数值错误，请稍后再试";
+add_order_errorMessage["certificateNumber.order.MissingParameter"] = "本违法需要线下处理";
+add_order_errorMessage["noRightIllegal.order.NotRule"] = "该笔违法超出自助处理范围，请交管部门处理";
 
 module.exports = {
   add_order_errorMessage: add_order_errorMessage

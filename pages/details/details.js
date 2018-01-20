@@ -46,64 +46,82 @@ Page({
    */
   addOrders: function () {
     let that = this;
-    wx.showLoading();
     let illegalList = this.data.illegalList;
     let i;
     illegalList.forEach(function (val, index) {
       if (val.isSelect) {
         i = index;
+        that.setData({
+          id: illegalList[i].id
+        });
       };
     })
-    wx.request({
-      url: addOrders + '?certificateNumber=' + illegalList[i].certificateNumber + '&certificateType='+ illegalList[i].certificateType+'&goodsId=' + illegalList[i].id,
-      method: 'POST',
-      header: {
-        'content-type': 'application/json',
-        "token_id": app.globalData.token
-      },
-      success: function (res) {
-        console.log(res);
-        if (res.statusCode == 200) {
-          let _info = JSON.parse(res.data.result);
-          console.log(_info.message)
-          that.setData({
-            id: illegalList[i].id
-          });
-          that.payment(_info.message);
-        } else if (res.statusCode == 503) {
-          wx.showToast({
-            icon: 'loading',
-            title: '缴费业务维护中，给您带来不便请谅解',
-            duration: 2000
-          })
-        } else if (res.statusCode == 400 || res.statusCode == 404) {
-          let code = dictionaries.add_order_errorMessage[res.data.code];
-          wx.showModal({
-            content: code,
-            showCancel: false,
-            success: function (res) {
+    console.log(!i)
+
+    if (!that.data.id) {
+      wx.showToast({
+        icon: 'loading',
+        title: '请选择违法',
+        duration: 2000
+      })
+      return;
+    } else {
+      wx.showLoading();
+      wx.request({
+        url: addOrders + '?goodsIds=' + illegalList[i].id,
+        method: 'POST',
+        header: {
+          'content-type': 'application/json',
+          "token_id": app.globalData.token
+        },
+        success: function (res) {
+          console.log(res);
+          wx.hideLoading();
+          if (res.statusCode == 200) {
+            that.payment(res.data.message);
+          } else if (res.statusCode == 503) {
+            wx.showToast({
+              icon: 'loading',
+              title: '缴费业务维护中，给您带来不便请谅解',
+              duration: 2000
+            })
+          } else if (res.statusCode == 400 || res.statusCode == 404) {
+            let code = dictionaries.add_order_errorMessage[res.data.code];
+            if(!code){
+              wx.showToast({
+                icon: 'loading',
+                title: '该笔违法超出自助处理范围，请交管部门处理',
+                duration: 2000
+              })
             }
-          });
-        } else {
+           console.log(code);
+            wx.showModal({
+              content: code,
+              showCancel: false,
+              success: function (res) {
+              }
+            });
+
+          } else {
+            wx.showToast({
+              icon: 'loading',
+              title: '系统当前繁忙',
+              duration: 2000
+            })
+          }
+        },
+        fail: function (error) {
           wx.showToast({
             icon: 'loading',
             title: 系统当前繁忙,
             duration: 2000
           })
+        },
+        complete: function () {
+         
         }
-      },
-      fail: function (error) {
-        console.log(error);
-        wx.showToast({
-          icon: 'loading',
-          title: 系统当前繁忙,
-          duration: 2000
-        })
-      },
-      complete: function () {
-        wx.hideLoading();
-      }
-    })
+      })
+    }
   },
   /**
    * 立即支付
@@ -124,6 +142,7 @@ Page({
         'accountId': app.globalData.accountId,
       },
       success: function (res) {
+        wx.hideLoading();
         let _info = JSON.parse(res.data.result);
         console.log(_info)
         if (res.statusCode == 200) {
@@ -144,7 +163,8 @@ Page({
                 };
               })
               that.setData({
-                illegalList: illegalList
+                illegalList: illegalList,
+                isPrompt:true
               });
             },
             'fail': function (res) {
@@ -168,7 +188,7 @@ Page({
         })
       },
       complete: function () {
-        wx.hideLoading();
+       
       }
     })
   },
@@ -204,7 +224,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-   
+
   },
 
   /**
@@ -212,16 +232,16 @@ Page({
    */
   onShow: function () {
 
-    let that = this;
-    let illegalList = that.data.illegalList;
-    let id = that.data.id;
-    illegalList.forEach(function (val, index) {
-      if (val.isPay) {
-        that.setData({
-          isPrompt: true
-        });
-      };
-    })
+    // let that = this;
+    // let illegalList = that.data.illegalList;
+    // let id = that.data.id;
+    // illegalList.forEach(function (val, index) {
+    //   if (val.isPay) {
+    //     that.setData({
+    //       isPrompt: true
+    //     });
+    //   };
+    // })
   },
 
   /**
