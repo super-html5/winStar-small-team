@@ -56,7 +56,6 @@ Page({
         });
       };
     })
-    console.log(!i)
 
     if (!that.data.id) {
       wx.showToast({
@@ -88,10 +87,11 @@ Page({
           } else if (res.statusCode == 400 || res.statusCode == 404) {
             let code = dictionaries.add_order_errorMessage[res.data.code];
             if(!code){
-              wx.showToast({
-                icon: 'loading',
-                title: '该笔违法超出自助处理范围，请交管部门处理',
-                duration: 2000
+              wx.showModal({
+                content: '该笔违法超出自助处理范围，请交管部门处理',
+                showCancel: false,
+                success: function (res) {
+                }
               })
             }
            console.log(code);
@@ -113,7 +113,7 @@ Page({
         fail: function (error) {
           wx.showToast({
             icon: 'loading',
-            title: 系统当前繁忙,
+            title: '系统当前繁忙',
             duration: 2000
           })
         },
@@ -183,7 +183,7 @@ Page({
       fail: function (error) {
         wx.showToast({
           icon: 'loading',
-          title: 系统当前繁忙,
+          title: '系统当前繁忙',
           duration: 2000
         })
       },
