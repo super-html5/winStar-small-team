@@ -6,7 +6,7 @@
 </view>
 
 <form bindsubmit='searchBox'>
-  <input name='massage' maxlength='18' type='text' placeholder='机动车号牌/身份证号码/处罚决定书编号' placeholder-class='text__placeholder'/>
+  <input name='massage' bindinput='cValue' value='{{inputValue}}' maxlength='18' type='text' placeholder='机动车号牌/身份证号码/处罚决定书编号' placeholder-class='text__placeholder'/>
   <view class='text__fl'>
     <text>支持西安市所有已裁决需要缴费的交通违法缴款</text>
   </view>

@@ -1,13 +1,14 @@
 const getCarNumberDetails = require('../../config.js').getCarNumberDetails
 const getPlateNumberListByNumber = require('../../config.js').getPlateNumberListByNumber
-const getPlateNumberListByAwardNumber = require('../../config.js').getPlateNumberListByAwardNumber
-const getPlateNumberListByCertificate = require('../../config.js').getPlateNumberListByCertificate
+const getPlateNumberListByA = require('../../config.js').getPlateNumberListByA
+const getPlateNumberListByC = require('../../config.js').getPlateNumberListByC
 
 const app = getApp()
 
 Page({
   data: {
     plateList: {},
+    inputValue: ''
   },
   onLoad: function () {
     app.getToken(this.backFu);
@@ -42,6 +43,12 @@ Page({
         that.searchTwo(msg)
       } else if (msg.length == 15) {
         that.searchThree(msg)
+      } else {
+        wx.showToast({
+          icon: 'loading',
+          title: '输入信息有误',
+          duration: 2000
+        })
       }
     }
   },
@@ -107,7 +114,7 @@ Page({
             }
           }
           let _t = new Date().getTime();
-          
+
           for (let i = 0; i < _r.length; i++) {
             if (_t - _r[i].awardAt >= 1296000000) {
               _r[i].isLeeFee = 2
@@ -150,7 +157,7 @@ Page({
   searchTwo: function (certificateNumber) {
     wx.showLoading();
     wx.request({
-      url: `${getPlateNumberListByCertificate}?certificateNumber=${certificateNumber}&certificateType=A`,
+      url: `${getPlateNumberListByC}?certificateNumber=${certificateNumber}&certificateType=A`,
       method: 'GET',
       header: {
         'content-type': 'application/json',
@@ -179,7 +186,7 @@ Page({
           wx.navigateTo({
             url: `/pages/details/details?isFlag=2&certificateNumber=${certificateNumber}&certificateType=A`,
           })
-        } else if (res.data.code == 'certificateNumberOrType.InvalidParameter') {
+        } else if (res.data.code == 'certificateNumberOrType.InvalidParameter' || res.statusCode == 400) {
           wx.showToast({
             icon: 'loading',
             title: '身份证号有误',
@@ -209,7 +216,7 @@ Page({
   searchThree: function (awardNumber) {
     wx.showLoading();
     wx.request({
-      url: `${getPlateNumberListByAwardNumber}?awardNumber=${awardNumber}`,
+      url: `${getPlateNumberListByA}?awardNumber=${awardNumber}`,
       method: 'GET',
       header: {
         'content-type': 'application/json',
@@ -219,10 +226,10 @@ Page({
         console.log(res);
         if (res.statusCode == 200) {
           let _t = new Date().getTime();
-          if (_t - res.data.awardAt >= 1296000000) {
-            res.data.isLeeFee = 2
-          }else{
-            res.data.isLeeFee = 1
+          if (_t - res.data[0].awardAt >= 1296000000) {
+            res.data[0].isLeeFee = 2
+          } else {
+            res.data[0].isLeeFee = 1
           }
           wx.hideLoading();
           wx.setStorageSync('illegalList', res.data);
@@ -252,4 +259,12 @@ Page({
       }
     })
   },
+  /**
+   * 转大写
+   */
+  cValue: function (e) {
+    this.setData({
+      inputValue: e.detail.value.toUpperCase(),
+    })
+  }
 })
