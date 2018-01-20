@@ -86,22 +86,22 @@ Page({
             })
           } else if (res.statusCode == 400 || res.statusCode == 404) {
             let code = dictionaries.add_order_errorMessage[res.data.code];
-            if(!code){
+            if (!code) {
               wx.showModal({
                 content: '该笔违法超出自助处理范围，请交管部门处理',
                 showCancel: false,
                 success: function (res) {
                 }
               })
+            } else {
+              wx.showModal({
+                content: code,
+                showCancel: false,
+                success: function (res) {
+                }
+              });
             }
-           console.log(code);
-            wx.showModal({
-              content: code,
-              showCancel: false,
-              success: function (res) {
-              }
-            });
-
+            
           } else {
             wx.showToast({
               icon: 'loading',
@@ -118,7 +118,7 @@ Page({
           })
         },
         complete: function () {
-         
+
         }
       })
     }
@@ -164,7 +164,7 @@ Page({
               })
               that.setData({
                 illegalList: illegalList,
-                isPrompt:true
+                isPrompt: true
               });
             },
             'fail': function (res) {
@@ -188,7 +188,7 @@ Page({
         })
       },
       complete: function () {
-       
+
       }
     })
   },
