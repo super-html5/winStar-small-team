@@ -77,6 +77,12 @@ page {
   margin-bottom: 20rpx;
 }
 
+.illegal>text:nth-of-type(4) {
+  font-size: 30rpx;
+  color: #f00;
+  margin-bottom: 20rpx;
+}
+
 .illegal>text:last-of-type {
   padding-bottom: 44rpx;
   margin-bottom: 0;

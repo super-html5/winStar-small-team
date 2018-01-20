@@ -14,7 +14,8 @@
       <view class='illegal' data-index="{{index}}" bindtap='selsct'>
         <text>{{illegal.place}}</text>
         <text>{{illegal.action}}</text>
-        <text  wx:if="{{illegal.isPay}}">违法处理中,请勿重复缴费</text>
+        <text wx:if="{{illegal.isPay}}">该笔违法正在处理中,请勿重复缴费</text>
+        <text wx:if="{{illegal.isLeeFee==2}}">有滞纳金，不支持在线办理</text>
         <image wx:if="{{!illegal.isSelect}}" src='../../img/unselect.png'></image>
         <image wx:if="{{illegal.isSelect}}" src='../../img/select.png'></image>
         <view class='punishment'>

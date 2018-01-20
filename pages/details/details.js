@@ -45,6 +45,7 @@ Page({
    * 下单
    */
   addOrders: function () {
+    let that = this;
     wx.showLoading();
     let illegalList = this.data.illegalList;
     let i;
@@ -54,22 +55,21 @@ Page({
       };
     })
     wx.request({
-      url: addOrders,
+      url: addOrders + '?certificateNumber=' + illegalList[i].certificateNumber + '&certificateType='+ illegalList[i].certificateType+'&goodsId=' + illegalList[i].id,
       method: 'POST',
       header: {
-        "token_id": app.globalData.token,
+        'content-type': 'application/json',
+        "token_id": app.globalData.token
       },
-      data: JSON.stringify({
-        'certificateNumber': illegalList[i].certificateNumber,
-        'certificateType': '02',
-        'goodsId': illegalList[i].id
-      }),
       success: function (res) {
         console.log(res);
         if (res.statusCode == 200) {
           let _info = JSON.parse(res.data.result);
           console.log(_info.message)
-          this.payment(_info.message);
+          that.setData({
+            id: illegalList[i].id
+          });
+          that.payment(_info.message);
         } else if (res.statusCode == 503) {
           wx.showToast({
             icon: 'loading',
@@ -77,12 +77,13 @@ Page({
             duration: 2000
           })
         } else if (res.statusCode == 400 || res.statusCode == 404) {
-          let code = dictionaries.add_order_errorMessage[res.data.code]
-          wx.showToast({
-            icon: 'loading',
-            title: code,
-            duration: 2000
-          })
+          let code = dictionaries.add_order_errorMessage[res.data.code];
+          wx.showModal({
+            content: code,
+            showCancel: false,
+            success: function (res) {
+            }
+          });
         } else {
           wx.showToast({
             icon: 'loading',
@@ -137,7 +138,7 @@ Page({
               let illegalList = that.data.illegalList;
               let id = that.data.id;
               illegalList.forEach(function (val, index) {
-                illegalList[i].isPay = false;
+                val.isPay = false;
                 if (val.id === id) {
                   illegalList[index].isPay = true;
                 };
@@ -181,26 +182,29 @@ Page({
     that.setData({
       illegalList: illegalList
     });
+
     if (options.isFlag == 1) {
       that.setData({
         Identification: '车牌号: ' + options.plateNumber
       });
     } else if (options.isFlag == 2) {
       that.setData({
-        Identification: '证件号码: ' + options.certificateNumber
+        Identification: '证件号码: ' + options.certificateNumber.substring(0, 6) + '****' +
+        options.certificateNumber.substring(14)
       });
     } else if (options.isFlag == 3) {
       that.setData({
         Identification: '裁决书编号: ' + options.awardNumber
       });
     }
+
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+   
   },
 
   /**
@@ -208,6 +212,16 @@ Page({
    */
   onShow: function () {
 
+    let that = this;
+    let illegalList = that.data.illegalList;
+    let id = that.data.id;
+    illegalList.forEach(function (val, index) {
+      if (val.isPay) {
+        that.setData({
+          isPrompt: true
+        });
+      };
+    })
   },
 
   /**
