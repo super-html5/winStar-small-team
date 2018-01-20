@@ -24,7 +24,7 @@
         </view>
       </view>
     </block>
-    <block wx:if="{{!illegalList}}">
+    <block wx:if="{{illegalList.length==0}}">
       <view class='noIllegal'>
         没有待处理的违法
       </view>

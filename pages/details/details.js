@@ -11,7 +11,7 @@ Page({
    */
   data: {
     isPrompt: false,
-    illegalList: [{}],
+    illegalList: [],
     Identification: '',
     money: 0,
     id: ''
