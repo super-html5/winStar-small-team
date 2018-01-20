@@ -106,6 +106,15 @@ Page({
               _r.push(res.data[i])
             }
           }
+          let _t = new Date().getTime();
+
+          for (let i = 0; i < _r.length; i++) {
+            if (_t - _r[i].awardAt >= 1296000000) {
+              _r[i].isLeeFee = 2
+            } else {
+              _r[i].isLeeFee = 1
+            }
+          }
           wx.hideLoading();
           wx.setStorageSync('illegalList', _r);
           wx.navigateTo({
@@ -150,6 +159,15 @@ Page({
       success: function (res) {
         console.log(res)
         if (res.statusCode == 200) {
+          let _t = new Date().getTime();
+          for (let i = 0; i < res.data.length; i++) {
+            if (_t - res.data[i].awardAt >= 1296000000) {
+              res.data[i].isLeeFee = 2
+            } else {
+              res.data[i].isLeeFee = 1
+            }
+          }
+          console.log(res.data);
           wx.hideLoading();
           wx.setStorageSync('illegalList', res.data);
           wx.navigateTo({
@@ -200,6 +218,12 @@ Page({
       success: function (res) {
         console.log(res);
         if (res.statusCode == 200) {
+          let _t = new Date().getTime();
+          if (_t - res.data.awardAt >= 1296000000) {
+            res.data.isLeeFee = 2
+          }else{
+            res.data.isLeeFee = 1
+          }
           wx.hideLoading();
           wx.setStorageSync('illegalList', res.data);
           wx.navigateTo({
