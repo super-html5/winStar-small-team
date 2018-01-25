@@ -65,23 +65,14 @@ page {
   width: 480rpx;
 }
 
-.illegal>text:nth-of-type(2),.illegal>text:nth-of-type(3) {
+.illegal>text.smallText {
   font-size: 30rpx;
   color: #999;
   margin-bottom: 20rpx;
 }
-
-.illegal>text:nth-of-type(4),.illegal>text:nth-of-type(5) {
-  font-size: 30rpx;
+.illegal>text.redText {
   color: #f00;
-  margin-bottom: 20rpx;
 }
-
-/* .illegal>text:nth-of-type(4) {
-  font-size: 30rpx;
-  color: #f00;
-  margin-bottom: 20rpx;
-} */
 
 .illegal>text:last-of-type {
   padding-bottom: 44rpx;
