@@ -50,3 +50,12 @@ button {
   margin-top: 70rpx;
   color: rgb(45, 91, 217);
 }
+
+.bot__text{
+  width: 100%;
+  position: absolute;
+  bottom: 80rpx;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 30rpx;
+}

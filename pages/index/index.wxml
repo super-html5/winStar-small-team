@@ -13,3 +13,7 @@
 
   <button form-type='submit'>查询并缴费</button>
 </form>
+
+<view class='bot__text'>
+<text>西安市公安厅交警总队</text>
+</view>
