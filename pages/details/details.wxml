@@ -13,10 +13,10 @@
     <block wx:if="{{illegalList.length>0}}" wx:for="{{illegalList}}" wx:for-item="illegal" wx:key="*this">
       <view class='illegal' data-index="{{index}}" bindtap='selsct'>
         <text>{{illegal.place}}</text>
-        <text class="smallText">{{illegal.action}}</text>
-        <text class="smallText">{{illegal.createdAtStr}}</text>
-        <text class="smallText redText"  wx:if="{{illegal.isLeeFee==2}}">有滞纳金，不支持在线办理</text>
-        <text class="smallText redText" wx:if="{{illegal.isPay}}">该笔违法正在处理中,请勿重复缴费</text>
+        <text>{{illegal.action}}</text>
+        <text>{{illegal.createdAtStr}}</text>
+        <text class="redText"  wx:if="{{illegal.isLeeFee==2}}">有滞纳金，不支持在线办理</text>
+        <text class="redText" wx:if="{{illegal.isPay}}">该笔违法正在处理中,请勿重复缴费</text>
         <image wx:if="{{!illegal.isSelect}}" src='../../img/unselect.png'></image>
         <image wx:if="{{illegal.isSelect}}" src='../../img/select.png'></image>
         <view class='punishment'>

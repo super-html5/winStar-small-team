@@ -63,9 +63,10 @@ page {
   font-size: 36rpx;
   margin-bottom: 20rpx;
   width: 480rpx;
+  color: #000;
 }
 
-.illegal>text.smallText {
+.illegal>text {
   font-size: 30rpx;
   color: #999;
   margin-bottom: 20rpx;
