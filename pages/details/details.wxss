@@ -31,6 +31,7 @@ page {
   left: 94rpx;
   right: 94rpx;
   top: 20rpx;
+  font-size:28rpx;
 }
 
 .content {
@@ -46,7 +47,7 @@ page {
 .illegal {
   position: relative;
   background: #fff;
-  padding: 24rpx 40rpx 30rpx 40rpx;
+  padding: 44rpx 40rpx 30rpx 40rpx;
   margin-bottom: 80rpx;
 }
 
@@ -71,6 +72,9 @@ text {
 
 .illegal_details>view.redText {
   color: #f00;
+}
+.illegal_details>view.greenText {
+  color: #729F63;
 }
 
 .illegal_details>view:last-of-type {

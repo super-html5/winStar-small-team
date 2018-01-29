@@ -10,7 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isPrompt: false,
+    isPrompt: true,
     illegalList: [],
     Identification: '',
     money: 0,
