@@ -2,7 +2,7 @@
 <view class='bigBox'>
   <view wx:if="{{isPrompt}}" class='prompt'>
     <image src='../../img/prompt.png'></image>
-    <text>缴费成功后，因数据会延迟该笔违法可能会存在，请勿在24小时内重复操作</text>
+    <text>缴费成功后，因数据会延迟该笔违法可能会存在，请勿在24小时内重复缴费。</text>
     <image bindtap='close' src='../../img/del.png'></image>
   </view>
 
@@ -12,17 +12,22 @@
     </view>
     <block wx:if="{{illegalList.length>0}}" wx:for="{{illegalList}}" wx:for-item="illegal" wx:key="*this">
       <view class='illegal' data-index="{{index}}" bindtap='selsct'>
-        <text>{{illegal.place}}</text>
-        <text>{{illegal.action}}</text>
-        <text>{{illegal.createdAtStr}}</text>
-        <text class="redText"  wx:if="{{illegal.isLeeFee==2}}">有滞纳金，不支持在线办理</text>
-        <text class="redText" wx:if="{{illegal.isPay}}">该笔违法正在处理中,请勿重复缴费</text>
-        <image wx:if="{{!illegal.isSelect}}" src='../../img/unselect.png'></image>
-        <image wx:if="{{illegal.isSelect}}" src='../../img/select.png'></image>
-        <view class='punishment'>
-          <text>扣分  {{illegal.dockPoints}}</text>
-          <text>罚款  {{illegal.penaltyAmount}}</text>
+        <view class='illegal_details'>
+          <view class='illegal_car' wx:if="{{isFlag!==1}}">{{illegal.plateNumber}}</view>
+          <view><text>违法时间</text>{{illegal.createdAtStr}}</view>
+          <view><text>违法地点</text>{{illegal.place}}</view>
+          <view><text>违法行为</text>{{illegal.action}}</view>
+          <view><text>罚款金额</text>{{illegal.penaltyAmount}}元</view>
+
+          <view class="redText" wx:if="{{illegal.isLeeFee==2}}">有滞纳金，不支持在线办理</view>
+          <view class="redText" wx:if="{{illegal.isPay}}">该笔违法正在处理中,请勿重复缴费</view>
+          <image wx:if="{{!illegal.isSelect}}" src='../../img/unselect.png'></image>
+          <image wx:if="{{illegal.isSelect}}" src='../../img/select.png'></image>
         </view>
+        <block wx:if="{{illegal.isLeeFee!=2}}">
+          <image wx:if="{{!illegal.isSelect}}" src='../../img/unselect.png'></image>
+          <image wx:if="{{illegal.isSelect}}" src='../../img/select.png'></image>
+        </block>
       </view>
     </block>
     <block wx:if="{{illegalList.length==0}}">

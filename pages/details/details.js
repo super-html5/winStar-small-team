@@ -14,7 +14,8 @@ Page({
     illegalList: [],
     Identification: '',
     money: 0,
-    id: ''
+    id: '',
+    isFlag: ''
   },
   /**
    * 关闭提示
@@ -157,8 +158,8 @@ Page({
               let illegalList = that.data.illegalList;
               let id = that.data.id;
               illegalList.forEach(function (val, index) {
-                if(!val.isPay){
-                    val.isPay = false;
+                if (!val.isPay) {
+                  val.isPay = false;
                 }
                 if (val.id === id) {
                   illegalList[index].isPay = true;
@@ -202,7 +203,8 @@ Page({
     let illegalList = wx.getStorageSync('illegalList');
     console.log(options);
     that.setData({
-      illegalList: illegalList
+      illegalList: illegalList,
+      isFlag: options.isFlag
     });
 
     if (options.isFlag == 1) {

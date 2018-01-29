@@ -26,7 +26,6 @@ page {
 }
 
 .prompt text {
-  font-size: 26rpx;
   color: #2c9cfc;
   position: absolute;
   left: 94rpx;
@@ -35,58 +34,58 @@ page {
 }
 
 .content {
-  padding: 0 30rpx 110rpx 30rpx;
+  padding-bottom: 110rpx;
 }
 
 .plate {
-  padding: 20rpx 0;
-}
-
-.content text {
-  display: block;
-}
-
-.plate>text:nth-of-type(1) {
-  font-size: 40rpx;
-  padding-bottom: 10rpx;
+  padding: 20rpx 30rpx;
+  background: #fff;
+  margin: 10rpx 0;
 }
 
 .illegal {
   position: relative;
   background: #fff;
-  padding: 44rpx 40rpx 30rpx 40rpx;
-  border-radius: 10rpx;
-  margin-bottom: 20rpx;
+  padding: 24rpx 40rpx 30rpx 40rpx;
+  margin-bottom: 80rpx;
 }
 
-.illegal>text:nth-of-type(1) {
-  font-size: 36rpx;
-  margin-bottom: 20rpx;
-  width: 480rpx;
-  color: #000;
+.illegal_details {
+  width: 84%;
 }
 
-.illegal>text {
+.illegal_details>view {
   font-size: 30rpx;
   color: #999;
-  margin-bottom: 20rpx;
+  margin-bottom: 16rpx;
 }
-.illegal>text.redText {
+
+.illegal_details>view.illegal_car {
+  color: #000;
+  font-size: 34rpx;
+}
+
+text {
+  margin-right: 30rpx;
+}
+
+.illegal_details>view.redText {
   color: #f00;
 }
 
-.illegal>text:last-of-type {
-  padding-bottom: 44rpx;
+.illegal_details>view:last-of-type {
+  padding-bottom: 24rpx;
   margin-bottom: 0;
-  border-bottom: 1rpx solid #d8d8d8;
 }
 
 .illegal image {
   width: 54rpx;
   height: 54rpx;
   position: absolute;
-  right: 50rpx;
-  top: 50rpx;
+  right: 40rpx;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
 }
 
 .punishment {

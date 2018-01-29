@@ -8,12 +8,12 @@
 <form bindsubmit='searchBox'>
   <input name='massage' bindinput='cValue' value='{{inputValue}}' maxlength='18' type='text' placeholder='机动车号牌/身份证号码/处罚决定书编号' placeholder-class='text__placeholder'/>
   <view class='text__fl'>
-    <text>支持西安市所有已裁决需要缴费的交通违法缴款</text>
+    <text>支持西安市所有已裁决需缴费的交通违法缴款</text>
   </view>
 
   <button form-type='submit'>查询并缴费</button>
 </form>
 
 <view class='bot__text'>
-<text>西安市公安厅交警总队</text>
+<text>西安市公安局交警支队</text>
 </view>
