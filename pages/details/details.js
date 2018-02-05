@@ -194,6 +194,9 @@ Page({
                         },
                         'fail': function (res) {
 
+                        },
+                        'complete': function () {
+                            that.sendMsg(formId, orderNumber);
                         }
                     })
                 } else {
