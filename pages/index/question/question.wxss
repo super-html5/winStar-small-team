@@ -2,8 +2,16 @@
   width: 90%;
   padding-left: 5%;
   padding-right: 5%;
-  font-size: 35rpx;
+  font-size: 30rpx;
 }
 .content > view {
   margin-bottom: 20rpx;
+}
+.b{
+  font-weight: 900;
+  font-size: 35rpx;
+}
+image{
+  width: 50%;
+  height: 320rpx;
 }
