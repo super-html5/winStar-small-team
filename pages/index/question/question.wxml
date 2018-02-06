@@ -4,8 +4,8 @@
   <view>（1）方形二维码：对微信版本没有限制，目前用户手机中的微信版本基本上都能扫描识别。</view>
   <view>（2）圆形二维码：此二维码仅供微信6.5.7以上版本使用；如果扫描后无法识别，请将微信升级至最新版本。</view>
   <view>
-    <image src='../../../img/1671517886154_.pic.jpg'></image>
-    <image src='../../../img/1681517886160_.pic.jpg'></image>
+    <image src='../../../img/511517898920_.pic.jpg'></image>
+    <image src='../../../img/501517898920_.pic.jpg'></image>
   </view>
 
   <view class='b'>2.关于小程序在线缴费的注意事项及常见问题：</view>
