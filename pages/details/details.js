@@ -191,7 +191,7 @@ Page({
       method: 'POST',
       data: {
         'orderNumber': orderNumber,
-        'bankCode': '991',
+        'bankCode': '105',
         'subBankCode': '203'
       },
       header: {

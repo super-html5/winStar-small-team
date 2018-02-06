@@ -1,5 +1,5 @@
 var host = 'https://mobile.sxwinstar.net/wechat_access'
-//var host = 'http://192.168.118.111:7000'
+// var host = 'http://192.168.118.111:7000'
 var msghost = 'http://zt.sxeccellentdriving.com'
 var config = {
     host,

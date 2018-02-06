@@ -139,6 +139,9 @@ text {
   color: #fff;
   border: none;
   border-radius: 0;
+  height: 110rpx;
+  line-height:110rpx;
+
 }
 
 button::after {
