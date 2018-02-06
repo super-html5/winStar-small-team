@@ -127,7 +127,7 @@ Page({
       wx.showLoading();
       wx.request({
         // url: addOrders + '?payType=4&goodsIds=' + id,  //批量的
-        url: addOrders + '?goodsIds=' + illegalList[i].id,
+        url: addOrders + '?goodsIds=' + illegalList[i].id + '&formId=' + formId,
         method: 'POST',
         header: {
           'content-type': 'application/json',
@@ -242,7 +242,7 @@ Page({
 
             },
             'complete': function () {
-              that.sendMsg(formId, orderNumber);
+              // that.sendMsg(formId, orderNumber);
             }
           })
         } else {
