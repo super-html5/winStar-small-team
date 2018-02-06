@@ -267,5 +267,11 @@ Page({
         this.setData({
             inputValue: e.detail.value.toUpperCase(),
         })
+    },
+
+    linkQuestion:function(){
+      wx.navigateTo({
+        url: '/pages/index/question/question',
+      })
     }
 })
