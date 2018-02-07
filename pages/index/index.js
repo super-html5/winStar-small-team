@@ -45,7 +45,7 @@ Page({
       } else if (msg.length == 15) {
         that.searchThree(msg)
       } else if (msg.length == 16) {
-        that.searchThree(msg.substring(0,15))
+        that.searchThree(msg.substring(0, 15))
       } else {
         wx.showToast({
           icon: 'loading',
