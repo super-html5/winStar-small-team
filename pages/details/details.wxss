@@ -11,7 +11,7 @@ page {
   background: #fff;
   overflow: hidden;
   margin: auto;
-  padding: 34rpx 30rpx;
+  padding: 64rpx 30rpx;
 }
 
 .prompt image {
@@ -30,7 +30,7 @@ page {
   position: absolute;
   left: 94rpx;
   right: 94rpx;
-  top: 20rpx;
+  top: 40rpx;
   font-size:28rpx;
 }
 
