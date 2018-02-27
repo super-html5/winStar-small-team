@@ -233,7 +233,13 @@ Page({
                         res.data[0].isLeeFee = 1
                     }
                     wx.hideLoading();
-                    wx.setStorageSync('illegalList', res.data);
+                    // 判断如果不是处理过的违法，则显示。否则不显示
+                    if (res.data[0].status !== 2) {
+                        wx.setStorageSync('illegalList', res.data);
+                    } else {
+                        wx.setStorageSync('illegalList', []);
+                    }
+                    // wx.setStorageSync('illegalList', res.data);
                     wx.navigateTo({
                         url: `/pages/details/details?isFlag=3&awardNumber=${awardNumber}`,
                     })
@@ -269,9 +275,9 @@ Page({
         })
     },
 
-    linkQuestion:function(){
-      wx.navigateTo({
-        url: '/pages/index/question/question',
-      })
+    linkQuestion: function () {
+        wx.navigateTo({
+            url: '/pages/index/question/question',
+        })
     }
 })
