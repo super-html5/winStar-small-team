@@ -139,11 +139,18 @@ Page({
           if (res.statusCode == 200) {
             that.payment(formId, res.data.message);
           } else if (res.statusCode == 503) {
-            wx.showToast({
-              icon: 'loading',
-              title: '缴费业务维护中，给您带来不便请谅解',
-              duration: 2000
-            })
+            // wx.showToast({
+            //   icon: 'loading',
+            //   title: '缴费业务维护中，给您带来不便请谅解',
+            //   duration: 2000
+            // })
+            wx.showModal({
+              content: res.data.data.msg,
+              showCancel: false,
+              success: function (res) {
+              }
+            });
+            
           } else if (res.statusCode == 400 || res.statusCode == 404) {
             let code = dictionaries.add_order_errorMessage[res.data.code];
             if (!code) {
@@ -191,7 +198,7 @@ Page({
       method: 'POST',
       data: {
         'orderNumber': orderNumber,
-        'bankCode': '991',
+        'bankCode': '105',
         'subBankCode': '203'
       },
       header: {

@@ -2,7 +2,7 @@
 <view class='bigBox'>
   <view wx:if="{{isPrompt}}" class='prompt'>
     <image src='../../img/prompt.png'></image>
-    <text>若出现违法记录显示不全，可转人工处理：4008-012-122。</text>
+    <text>若出现违法记录不全，请在5-10分钟后重新查询处理，或转人工处理4008-012-122。</text>
     <image bindtap='close' src='../../img/del.png'></image>
   </view>
 
