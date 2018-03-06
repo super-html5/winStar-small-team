@@ -2,6 +2,7 @@
 const pay = require('../../config.js').pay
 const addOrders = require('../../config.js').addOrders
 const dictionaries = require('dictionaries');
+const utils = require('../../utils/util');
 const app = getApp()
 const sendMsgUrl = require('../../config.js').sendMsgUrl
 Page({
@@ -150,7 +151,7 @@ Page({
               success: function (res) {
               }
             });
-            
+
           } else if (res.statusCode == 400 || res.statusCode == 404) {
             let code = dictionaries.add_order_errorMessage[res.data.code];
             if (!code) {
@@ -292,11 +293,17 @@ Page({
     let that = this;
     let illegalList = wx.getStorageSync('illegalList');
     console.log(options);
-    that.setData({
+    illegalList.forEach(function (val) {
+      val.createdAt=utils.formatTime(val.createdAt);
+      val.awardAt=utils.formatTime(val.awardAt);
+    })
+
+      that.setData({
       illegalList: illegalList,
       isFlag: options.isFlag
     });
 
+    console.log(illegalList)
     if (options.isFlag == 1) {
       that.setData({
         Identification: '车牌号: ' + options.plateNumber

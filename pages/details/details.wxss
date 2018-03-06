@@ -31,7 +31,7 @@ page {
   left: 94rpx;
   right: 94rpx;
   top: 40rpx;
-  font-size:28rpx;
+  font-size: 28rpx;
 }
 
 .content {
@@ -40,30 +40,34 @@ page {
 
 .plate {
   padding: 20rpx 30rpx;
-  background: #fff;
   margin: 10rpx 0;
 }
 
 .illegal {
   position: relative;
-  background: #fff;
-  padding: 44rpx 40rpx 30rpx 40rpx;
+  padding: 0 40rpx 30rpx 40rpx;
   margin-bottom: 80rpx;
 }
 
 .illegal_details {
-  width: 84%;
+  background: #fff;
+  border-radius: 10rpx;
 }
 
 .illegal_details>view {
   font-size: 30rpx;
   color: #999;
-  margin-bottom: 16rpx;
+  padding: 25rpx 20rpx;
 }
 
 .illegal_details>view.illegal_car {
-  color: #000;
+  background: #2c9cfc;
+  color: #ffffff;
+  height: 90rpx;
+  line-height: 90rpx;
   font-size: 34rpx;
+  padding:0 20rpx;
+  border-radius: 10rpx 10rpx 0 0;
 }
 
 text {
@@ -73,23 +77,17 @@ text {
 .illegal_details>view.redText {
   color: #f00;
 }
-.illegal_details>view.greenText {
-  color: #729F63;
-}
 
-.illegal_details>view:last-of-type {
-  padding-bottom: 24rpx;
-  margin-bottom: 0;
+.illegal_details>view.greenText {
+  color: #729f63;
 }
 
 .illegal image {
   width: 54rpx;
   height: 54rpx;
   position: absolute;
-  right: 40rpx;
-  top: 0;
-  bottom: 0;
-  margin: auto 0;
+  right:56rpx;
+  top:18rpx;
 }
 
 .punishment {
@@ -140,11 +138,16 @@ text {
   border: none;
   border-radius: 0;
   height: 110rpx;
-  line-height:110rpx;
-
+  line-height: 110rpx;
 }
 
 button::after {
   border-radius: 0;
   border: none;
+}
+.bg-white{
+  background: white;
+}
+.bg-gray{
+  background: #efefef;
 }

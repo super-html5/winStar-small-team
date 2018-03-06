@@ -13,11 +13,19 @@
     <block wx:if="{{illegalList.length>0}}" wx:for="{{illegalList}}" wx:for-item="illegal" wx:key="*this">
       <view class='illegal' data-index="{{index}}" bindtap='selsct'>
         <view class='illegal_details'>
-          <view class='illegal_car' wx:if="{{isFlag!=1}}">{{illegal.plateNumber}}</view>
-          <view><text>违法时间</text>{{illegal.createdAtStr}}</view>
-          <view><text>违法地点</text>{{illegal.place}}</view>
-          <view><text>违法行为</text>{{illegal.action}}</view>
-          <view><text>罚款金额</text>{{illegal.penaltyAmount}}元</view>
+          <block wx:if="{{isFlag!=1}}">
+            <view class='illegal_car'><text>车牌号:</text>{{illegal.plateNumber}}</view>
+            <view class="bg-white"><text>违法人:</text>{{illegal.litigant}}</view>
+          </block>
+          <block wx:if="{{isFlag==1}}">
+            <view class='illegal_car'><text>违法人:</text>{{illegal.plateNumber}}</view>
+            <view class="bg-white"><text>裁决书编号:</text>{{illegal.awardNumber}}</view>
+          </block>
+          <view class="bg-gray"><text>违法时间:</text>{{illegal.createdAt}}</view>
+          <view class="bg-white"><text>违法地点:</text>{{illegal.place}}</view>
+          <view class="bg-gray"><text>违法行为:</text>{{illegal.action}}</view>
+          <view class="bg-white"><text>裁决时间:</text>{{illegal.awardAt}}</view>
+          <view class="bg-gray"><text>罚款金额:</text>{{illegal.penaltyAmount}}元</view>
 
           <view class="redText" wx:if="{{illegal.isLeeFee==2}}">有滞纳金，不支持在线办理</view>
           <view class="greenText" wx:if="{{illegal.isPay}}">缴费成功正在处理，请24小时后查询处理结果</view>
