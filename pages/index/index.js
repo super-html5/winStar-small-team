@@ -191,7 +191,7 @@ Page({
         } else if (res.data.code == 'certificateNumberOrType.InvalidParameter' || res.statusCode == 400) {
           wx.showToast({
             icon: 'loading',
-            title: '请核对信息重新输入',
+            title: '信息输入有误',
             duration: 2000
           })
         } else {
