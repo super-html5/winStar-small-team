@@ -1,6 +1,5 @@
 //app.js
 const getTokenInfo = require('./config.js').getTokenInfo
-const getOpenIdUrl = require('./config.js').getOpenIdUrl
 App({
     onLaunch: function () {
 
