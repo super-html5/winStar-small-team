@@ -18,7 +18,7 @@
             <view class="bg-white"><text>违法人:</text>{{illegal.litigant}}</view>
           </block>
           <block wx:if="{{isFlag==1}}">
-            <view class='illegal_car'><text>违法人:</text>{{illegal.plateNumber}}</view>
+            <view class='illegal_car'><text>违法人:</text>{{illegal.litigant}}</view>
             <view class="bg-white"><text>裁决书编号:</text>{{illegal.awardNumber}}</view>
           </block>
           <view class="bg-gray"><text>违法时间:</text>{{illegal.createdAt}}</view>
