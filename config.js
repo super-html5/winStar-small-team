@@ -1,6 +1,5 @@
 var host = 'https://mobile.sxwinstar.net/wechat_access'
 // var host = 'http://192.168.118.111:7000'
-var msghost = 'http://zt.sxeccellentdriving.com'
 var config = {
     host,
     getTokenInfo: `${host}/api/user/account/`,//获取用户token
@@ -10,7 +9,5 @@ var config = {
     getPlateNumberListByC: `${host}/api/v1/illegals/certificateSearch`,//根据身份证号查询违法
     addOrders: `${host}/api/v1/multiorders`, //下单
     pay: `${host}/api/v1/cashier/payOrder`,//支付
-    getOpenIdUrl: `${msghost}/smallRoutine/getOpenId`,//获取openId
-    sendMsgUrl: `${msghost}/smallRoutine/send`,//推送消息
 };
 module.exports = config 

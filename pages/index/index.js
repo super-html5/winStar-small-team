@@ -12,7 +12,6 @@ Page({
   },
   onLoad: function () {
     app.getToken(this.backFu);
-    app.getUserInfo();
   },
   backFu: function (res) {
     app.globalData.token = res.data.token;
@@ -192,7 +191,7 @@ Page({
         } else if (res.data.code == 'certificateNumberOrType.InvalidParameter' || res.statusCode == 400) {
           wx.showToast({
             icon: 'loading',
-            title: '身份证号有误',
+            title: '请核对信息重新输入',
             duration: 2000
           })
         } else {

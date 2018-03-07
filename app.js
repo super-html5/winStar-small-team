@@ -37,29 +37,4 @@ App({
         personInfo:null,
         openid:null
     },
-    getUserInfo: function (cb) {
-        var that = this
-        if (this.globalData.personInfo) {
-            typeof cb == "function" && cb(this.globalData.personInfo)
-        } else {
-            wx.login({
-                success: function (res) {
-                    console.log("code=" + res.code);
-                    wx.request({
-                        //获取openid接口
-                        url: getOpenIdUrl,
-                        data: {
-                            js_code: res.code
-                        },
-                        method: 'GET',
-                        success: function (res) {
-                            that.globalData.openid = res.data.openid
-                            console.log("openid=" + that.globalData.openid)
-                        }
-                    })
-
-                }
-            })
-        }
-    }
 })
