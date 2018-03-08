@@ -29,12 +29,12 @@
 
           <view class="redText" wx:if="{{illegal.isLeeFee==2}}">有滞纳金，不支持在线办理</view>
           <view class="greenText" wx:if="{{illegal.isPay}}">缴费成功正在处理，请24小时后查询处理结果</view>
-          <image wx:if="{{!illegal.isSelect}}" src='../../img/unselect.png'></image>
-          <image wx:if="{{illegal.isSelect}}" src='../../img/select.png'></image>
+          <!-- <image wx:if="{{!illegal.isSelect}}" src='../../img/unselect.png'></image>
+          <image wx:if="{{illegal.isSelect}}" src='../../img/select.png'></image> -->
         </view>
         <block wx:if="{{illegal.isLeeFee!=2}}">
-          <image wx:if="{{!illegal.isSelect}}" src='../../img/unselect.png'></image>
-          <image wx:if="{{illegal.isSelect}}" src='../../img/select.png'></image>
+          <image wx:if="{{!illegal.isSelect}}" src='../../img/unselect1.png'></image>
+          <image wx:if="{{illegal.isSelect}}" src='../../img/select1.png'></image>
         </block>
       </view>
     </block>
