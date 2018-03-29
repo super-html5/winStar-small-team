@@ -30,7 +30,7 @@ Page({
     } else {
       let msg = _msg.toUpperCase();
       console.log(msg);
-      if (msg.length <= 7) {
+      if (msg.length <= 8) {
         if (msg.substring(0, 2) != "陕A") {
           wx.showToast({
             icon: 'loading',
