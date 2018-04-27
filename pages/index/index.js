@@ -216,6 +216,16 @@ Page({
    * 根据裁决书编号查询
    */
   searchThree: function (awardNumber) {
+    var _b4 = awardNumber.substring(0, 4);
+    if (_b4 != 6101) {
+      wx.showModal({
+        content: '该笔违法超出自助处理范围，请到交管部门处理',
+        showCancel: false,
+        success: function (res) {
+        }
+      })
+      return;
+    }
     wx.showLoading();
     wx.request({
       url: `${getPlateNumberListByA}?awardNumber=${awardNumber}`,
@@ -240,7 +250,6 @@ Page({
           } else {
             wx.setStorageSync('illegalList', []);
           }
-          // wx.setStorageSync('illegalList', res.data);
           wx.navigateTo({
             url: `/pages/details/details?isFlag=3&awardNumber=${awardNumber}`,
           })

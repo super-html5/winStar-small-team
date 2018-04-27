@@ -125,6 +125,16 @@ Page({
       })
       return;
     } else {
+      console.log(illegalList[i]);
+      if (illegalList[i].awardNumber.substring(0, 4) != 6101) {
+        wx.showModal({
+          content: '该笔违法超出自助处理范围，请到交管部门处理',
+          showCancel: false,
+          success: function (res) {
+          }
+        })
+        return;
+      }
       wx.showLoading();
       wx.request({
         // url: addOrders + '?payType=4&goodsIds=' + id,  //批量的
@@ -140,11 +150,6 @@ Page({
           if (res.statusCode == 200) {
             that.payment(formId, res.data.message);
           } else if (res.statusCode == 503) {
-            // wx.showToast({
-            //   icon: 'loading',
-            //   title: '缴费业务维护中，给您带来不便请谅解',
-            //   duration: 2000
-            // })
             wx.showModal({
               content: res.data.data.msg,
               showCancel: false,
@@ -294,11 +299,11 @@ Page({
     let illegalList = wx.getStorageSync('illegalList');
     console.log(options);
     illegalList.forEach(function (val) {
-      val.createdAt=utils.formatTime(val.createdAt);
-      val.awardAt=utils.formatTime(val.awardAt);
+      val.createdAt = utils.formatTime(val.createdAt);
+      val.awardAt = utils.formatTime(val.awardAt);
     })
 
-      that.setData({
+    that.setData({
       illegalList: illegalList,
       isFlag: options.isFlag
     });
