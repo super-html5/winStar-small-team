@@ -222,7 +222,7 @@ Page({
             'timeStamp': _info.timeStamp,
             'nonceStr': _info.nonceStr,
             'package': _info.package,
-            'signType': 'MD5',
+            'signType': _info.signType,
             'paySign': _info.paySign,
             'success': function (res) {
               console.log(res);
