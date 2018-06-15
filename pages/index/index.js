@@ -59,9 +59,11 @@ Page({
    */
   getCarNumberDetails: function (plateNumber) {
     wx.showLoading();
+
+    let _plateNumber = encodeURI(plateNumber);
     let that = this;
     wx.request({
-      url: `${getCarNumberDetails}?plateNumber=${plateNumber}&plateNumberType=02`,
+      url: `${getCarNumberDetails}?plateNumber=${_plateNumber}&plateNumberType=02`,
       method: 'GET',
       header: {
         'content-type': 'application/json',
@@ -99,8 +101,9 @@ Page({
    */
   searchOne: function (plateNumber, engineNumber) {
     let that = this;
+    let _plateNumber = encodeURI(plateNumber);
     wx.request({
-      url: `${getPlateNumberListByNumber}?plateNumber=${plateNumber}&engineNumber=${engineNumber}`,
+      url: `${getPlateNumberListByNumber}?plateNumber=${_plateNumber}&engineNumber=${engineNumber}`,
       method: 'GET',
       header: {
         'content-type': 'application/json',
