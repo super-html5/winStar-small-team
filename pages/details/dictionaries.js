@@ -68,6 +68,7 @@ car_errorMessage["EACH_ACCOUNT_CAN_ONLY_AUTHENTICATE_ONE_CAR.USER.NotRule"] = "�
 car_errorMessage["CAR_IS_ALREADY_BINDED.USER.NotRule"] = "该车辆已被认证";
 
 
+
 /**
  * 添加订单，缴费时 error状态
  */
@@ -78,9 +79,9 @@ add_order_errorMessage["driverLicense.order.NotFound"] = "查询驾驶证不存�
 add_order_errorMessage["driverLicenseNotBinding.order.NotRule"] = "驾驶证未绑定，无法处理本次违法";
 add_order_errorMessage["driverLicenseError.order.NotRule"] = "驾驶证有误，无法处理本次违法";
 add_order_errorMessage["handled.order.NotRule"] = "该违法已经处理成功，请稍后查询验证";
-add_order_errorMessage["othersPaid.order.NotRule"] = "您好，该笔违法已在其他渠道缴费处理中，暂时无法在本平台缴费，请稍后再试或选择其他渠道进行处理。";
+add_order_errorMessage["othersPaid.order.NotRule"] = "该违法已缴费成功，正在处理";
 add_order_errorMessage["notMulti.paid.order"] = "您好，该笔违法已在其他渠道缴费处理中，暂时无法在本平台缴费，请稍后再试或选择其他渠道进行处理。";
-add_order_errorMessage["paid.order.NotRule"] = "您好，该笔违法已在其他渠道缴费处理中，暂时无法在本平台缴费，请稍后再试或选择其他渠道进行处理。";
+add_order_errorMessage["paid.order.NotRule"] = "该违法已缴费成功，正在处理";
 add_order_errorMessage["mishandled.order.NotRule"] = "该笔违法超出自助处理范围，请交管部门处理";
 add_order_errorMessage["awardedAndPaid.order.NotRule"] = "该违法已经处理完毕";
 add_order_errorMessage["awardedNot610.order.NotRule"] = "该笔违法超出自助处理范围，请交管部门处理";
