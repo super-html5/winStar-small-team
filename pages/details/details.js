@@ -135,6 +135,15 @@ Page({
         })
         return;
       }
+      if (illegalList[i].penaltyAmount>=1000){
+        wx.showModal({
+          content: '该笔违法超出自助处理范围，请到交管部门处理',
+          showCancel: false,
+          success: function (res) {
+          }
+        })
+        return;
+      }
       wx.showLoading();
       wx.request({
         // url: addOrders + '?payType=4&goodsIds=' + id,  //批量的
