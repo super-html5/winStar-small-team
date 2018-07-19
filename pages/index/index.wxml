@@ -19,5 +19,6 @@
 </view>
 
 <view class='bot__text'>
-  <text>西安市公安局交警支队</text>
+  <view style='margin-bottom:10rpx;'>西安市公安局交警支队</view>
+  <view>客服电话：400-8012122</view>
 </view>
